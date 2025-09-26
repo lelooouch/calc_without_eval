@@ -1,52 +1,60 @@
 from re import *
 
+def f(mass):
+    if len(mass) == 1:
+        return mass[0]
+    for i in range(len(mass)):
+        if str(mass[i]) in '*$/':
+            if mass[i] == '*':
+                a = mass[i-1]
+                b = mass[i+1]
+                mass[i] = mass[i-1] * mass[i+1]
+                mass.remove(a)
+                mass.remove(b)
+                return f(mass)
+            elif mass[i] == '/':
+                a = mass[i-1]
+                b = mass[i+1]
+                mass[i] = mass[i-1] / mass[i+1]
+                mass.remove(a)
+                mass.remove(b)
+                return f(mass)
+            else:
+                a = mass[i - 1]
+                b = mass[i + 1]
+                mass[i] = mass[i - 1] // mass[i + 1]
+                mass.remove(a)
+                mass.remove(b)
+                return f(mass)
+
+
+
 a = input()
 a = a.replace('//', '$')
 reg = r'[0-9]+'
-reg2 = r'[*|+|$|/|-]'
 # 132-4342*893//43
+
 num1 = []
-num_1 = []
-num2 = []
-num_2 = []
 
 for i in finditer(reg, a):
     num1.append(int(i.group()))
-    num_1.append(int(i.group()))
+
+for _ in num1:
+    a = a.replace(str(_), 'i')
+
+zn = a.split('i')
+ans = []
+zn.pop(0)
+zn.pop(-1)
+print(zn)
+for i in range(len(zn)):
+    ans.append(num1[i])
+    ans.append(zn[i])
+ans.append(num1[-1])
+
+print(f(ans))
 
 
-'''
-for j in finditer(reg2, a):
-    num2.append(j.group())
-    num_2.append(j.group())
-'''
-
-
-first = []
-#for i in range(len(num2)):
-i = 0
-while '*' not in num2 or '$' not in num2 or '/' not in num2:
-    if num2[i] in '*/$':
-        if num2[i] == '*':
-            num1[i] = num1[i] * num1[i+1]
-            num1.remove(num1[i+1])
-            #num2.remove(num2[i])
-            i += 1
-        elif num2[i] == '/':
-            num_1[i] = num1[i] / num1[i + 1]
-            num_1.remove(num1[i + 1])
-            num2.remove(num2[i])
-            i += 1
-        elif num2[i] == '$':
-            print(i, num1)
-            num_1[i] = num1[i] // num1[i + 1]
-            print(i, num1)
-            num_1.remove(num1[i + 1])
-            num2.remove(num2[i])
-            i += 1
-
-
-print(first)
 
 
 
