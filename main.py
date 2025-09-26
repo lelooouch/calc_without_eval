@@ -13,11 +13,13 @@ num_2 = []
 for i in finditer(reg, a):
     num1.append(int(i.group()))
     num_1.append(int(i.group()))
+
+
+'''
 for j in finditer(reg2, a):
     num2.append(j.group())
     num_2.append(j.group())
-
-
+'''
 
 
 first = []
