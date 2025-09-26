@@ -19,13 +19,31 @@ def f(mass):
                 mass.remove(a)
                 mass.remove(b)
                 return f(mass)
-            else:
+            elif mass[i] == '$':
                 a = mass[i - 1]
                 b = mass[i + 1]
                 mass[i] = mass[i - 1] // mass[i + 1]
                 mass.remove(a)
                 mass.remove(b)
                 return f(mass)
+
+    for i in range(len(mass)):
+        if str(mass[i]) in '+-':
+            if mass[i] == '+':
+                a = mass[i-1]
+                b = mass[i+1]
+                mass[i] = mass[i-1] + mass[i+1]
+                mass.remove(a)
+                mass.remove(b)
+                return f(mass)
+            else:
+                a = mass[i - 1]
+                b = mass[i + 1]
+                mass[i] = mass[i - 1] - mass[i + 1]
+                mass.remove(a)
+                mass.remove(b)
+                return f(mass)
+
 
 
 
