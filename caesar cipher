@@ -1,5 +1,5 @@
 def shifr(text, num):
-    alphabet_eng = [chr(i) for i in range(97, 123)]
+    alphabet_eng = 'abcdefghijklmnopqrstuvwxyz'
     alphabet_rus = 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя'
     new_text = []
     if text[0] in alphabet_eng:
@@ -8,7 +8,7 @@ def shifr(text, num):
             if a > 25:
                 a = a % 25 - 1 
             new_text.append(alphabet_eng[a])
-        return new_text
+        return ''.join(new_text)
     else:
         for i in range(len(text)):
             a = alphabet_rus.index(text[i]) + num
@@ -19,23 +19,30 @@ def shifr(text, num):
 
 
 def de_shifr(text, num):
-    alphabet_eng = [chr(i) for i in range(97, 123)]
+    alphabet_eng = 'abcdefghijklmnopqrstuvwxyz'
     alphabet_rus = 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя'
     new_text = []
     if text[0] in alphabet_eng:
         for i in range(len(text)):
-            new_text.append(alphabet_eng[alphabet_eng.index(text[i]) - num])
-        return new_text
+            a = alphabet_eng.index(text[i]) - num
+            if a < 0:
+                a = a % 25 + 1 
+            new_text.append(alphabet_eng[a])
+        return ''.join(new_text)
     else:
         for i in range(len(text)):
-            new_text.append(alphabet_rus[alphabet_rus.index(text[i]) - num])
+            a = alphabet_rus.index(text[i]) - num
+            if a < 0:
+                a = a % 32 + 1 
+            new_text.append(alphabet_rus[a])
         return ''.join(new_text)
 
 text = input("введите строку:")
 num = int(input("введите число:"))
 
 if text.isalpha():
-    print(de_shifr(text, num))
+    print(f'Зашифрованное - {shifr(text, num)}')
+    print(f'Расшифрованное - {de_shifr(text, num)}')
 else:
     print('ошибка')
 
