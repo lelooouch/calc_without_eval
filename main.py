@@ -64,14 +64,13 @@ zn = a.split('i')
 ans = []
 zn.pop(0)
 zn.pop(-1)
-print(zn)
+
 for i in range(len(zn)):
     ans.append(num1[i])
     ans.append(zn[i])
 ans.append(num1[-1])
 
 print(f(ans))
-
 
 
 
