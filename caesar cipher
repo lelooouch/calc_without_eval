@@ -1,0 +1,32 @@
+def shifr(text, num):
+    alphabet_eng = [chr(i) for i in range(97, 123)]
+    alphabet_rus = 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя'
+    new_text = []
+    if text[0] in alphabet_eng:
+        for i in range(len(text)):
+            new_text.append(alphabet_eng[alphabet_eng.index(text[i]) + num])
+        return new_text
+    else:
+        for i in range(len(text)):
+            new_text.append(alphabet_rus[alphabet_rus.index(text[i]) + num])
+        return ''.join(new_text)
+
+def de_shifr(text, num):
+    alphabet_eng = [chr(i) for i in range(97, 123)]
+    alphabet_rus = 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя'
+    new_text = []
+    if text[0] in alphabet_eng:
+        for i in range(len(text)):
+            new_text.append(alphabet_eng[alphabet_eng.index(text[i]) - num])
+        return new_text
+    else:
+        for i in range(len(text)):
+            new_text.append(alphabet_rus[alphabet_rus.index(text[i]) - num])
+        return ''.join(new_text)
+
+text = input()
+num = int(input())
+
+
+print(shifr(text, num))
+print(de_shifr(text, num))
