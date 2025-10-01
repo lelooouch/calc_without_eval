@@ -46,6 +46,39 @@ def number_converter(number):
     return ''.join(rim)
 
 
+def de_number_converter(number):
+    num_m = []
+    for item in number:
+        k = []
+        for i in range(len(item)):
+            if item[i] == 'M':
+                k.append(1000)
+            elif item[i] == 'D':
+                k.append(500)
+            elif item[i] == 'C':
+                k.append(100)
+            elif item[i] == 'L':
+                k.append(50)
+            elif item[i] == 'X':
+                k.append(10)
+            elif item[i] == 'V':
+                k.append(5)
+            elif item[i] == 'I':
+                k.append(1)
+
+        for j in range(len(k)-1):
+            if k[j] < k[j+1]:
+                k[j] = k[j+1] - k[j]
+                k.remove(k[j+1])
+                j += 1
+        num_m.append(sum(k))
+    return num_m
+
+
+
+numm = input("Введите римские числа через пробел: ").split()
+
+print(de_number_converter(numm))
 
 
 num = int(input("Введите целое число от 1 до 9999: "))
