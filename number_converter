@@ -69,19 +69,15 @@ def de_number_converter(number):
         for j in range(len(k)-1):
             if k[j] < k[j+1]:
                 k[j] = k[j+1] - k[j]
-                k.remove(k[j+1])
-                j += 1
+                k[j+1] = 0
+
         num_m.append(sum(k))
     return num_m
 
 
 
-numm = input("Введите римские числа через пробел: ").split()
-
-print(de_number_converter(numm))
-
-
 num = int(input("Введите целое число от 1 до 9999: "))
-
 print(number_converter(num))
 
+numm = input("Введите римские числа через пробел: ").split()
+print(de_number_converter(numm))
