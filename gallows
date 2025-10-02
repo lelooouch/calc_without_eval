@@ -1,0 +1,88 @@
+import turtle
+
+def gallows(word):
+    pen = turtle.Turtle()
+    pen.right(180)
+    pen.forward(100)
+    pen.left(90)
+    pen.forward(100)
+    pen.left(90)
+    pen.forward(40)
+    mass_word = [i for i in word]
+    other_mass_word = ['_'] * len(mass_word)
+    print(other_mass_word)
+    level = 0
+    while mass_word != other_mass_word:
+        flag = True
+        other_word = input("ВВЕДИТЕ СЛОВО: ")
+        for letter in other_word:
+            indices = []
+            for i, item in enumerate(mass_word):
+                if item == letter:
+                    indices.append(i)
+            if letter in mass_word:
+                for i in indices:
+                    other_mass_word[i] = letter
+                flag = False
+        print(other_mass_word)
+
+        if flag:
+            if level == 0:
+                pen.forward(-40)
+                pen.left(90)
+                pen.forward(70)
+                pen.right(60)
+                pen.forward(60)
+                level += 1
+            elif level == 1:
+                pen.right(30)
+                pen.forward(30)
+                pen.right(90)
+                pen.forward(30)
+                level += 1
+            elif level == 2:
+                pen.up()
+                pen.left(90)
+                pen.forward(5)
+                pen.down()
+                pen.circle(10)
+                level += 1
+            elif level == 3:
+                pen.up()
+                pen.forward(-20)
+                pen.right(90)
+                pen.forward(15)
+                pen.down()
+                pen.circle(20)
+                level += 1
+            elif level == 4:
+                pen.right(90)
+                pen.forward(10)
+                pen.up()
+                pen.forward(-50)
+                pen.down()
+                pen.forward(-10)
+            elif level == 5:
+                pen.forward(30)
+                pen.left(90)
+                pen.forward(30)
+                pen.right(30)
+                pen.forward(10)
+                pen.forward(-10)
+                pen.left(60)
+                pen.forward(10)
+            else:
+                turtle.done()
+                print("ТЫ ПРОИГРАЛ")
+                print(f"ЗАГАДАННОЕ СЛОВО БЫЛО: {word}")
+                return
+
+    print("ТЫ ВЫИГРАЛ")
+    return
+
+
+
+
+
+gallows(input('ВВЕДИТЕ ЗАГАДАННОЕ СЛОВО: '))
+
