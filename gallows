@@ -25,7 +25,7 @@ def gallows(word):
                     other_mass_word[i] = letter
                 flag = False
         print(other_mass_word)
-
+        print(f"КОЛИЧЕСТВО ПОПЫТОК: {5 - level}")
         if flag:
             if level == 0:
                 pen.forward(-40)
