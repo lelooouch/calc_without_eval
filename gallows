@@ -20,12 +20,12 @@ def gallows(word):
             for i, item in enumerate(mass_word):
                 if item == letter:
                     indices.append(i)
-            if letter in mass_word:
+            if letter in mass_word and letter not in other_mass_word:
                 for i in indices:
                     other_mass_word[i] = letter
                 flag = False
-        print(other_mass_word)
         print(f"КОЛИЧЕСТВО ПОПЫТОК: {5 - level}")
+        print(other_mass_word)
         if flag:
             if level == 0:
                 pen.forward(-40)
@@ -77,8 +77,8 @@ def gallows(word):
                 print(f"ЗАГАДАННОЕ СЛОВО БЫЛО: {word}")
                 return
 
-    turtle.done()
     print("ТЫ ВЫИГРАЛ")
+    turtle.done()
     return
 
 
@@ -86,4 +86,3 @@ def gallows(word):
 
 
 gallows(input('ВВЕДИТЕ ЗАГАДАННОЕ СЛОВО: '))
-
