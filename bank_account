@@ -1,0 +1,58 @@
+def create_bank_account(name_bank_account): # создание счета
+    bank_accounts[name_bank_account] = 0
+    return
+
+def money_transfer(from_account, to_account, money_amount): # перевод с одного счета на другой
+    if from_account == to_account:
+        return
+    if bank_accounts[from_account] < money_amount:
+        print(f'На банковском счете {from_account} не хватает средств.')
+        return
+    bank_accounts[from_account] -= money_amount
+    bank_accounts[to_account] += money_amount
+    return
+
+def account_replenishment(account, money_amount): # пополнение счета
+    bank_accounts[account] += money_amount
+    return
+
+def debit_from_account(account, money_amount): # списание с счета
+    bank_accounts[account] -= money_amount
+    return
+
+def account_balance(account): # проверка баланса счета
+    print(bank_accounts[account])
+    return
+
+bank_accounts = {}
+
+lines = []
+print("Выведите операцию, которую хотите осуществить: ")
+while True:
+    line = input()
+    if line == "":
+        break
+    elif line == "создание счета":
+        a = input('Название счета: ')
+        create_bank_account(a)
+    elif line == "перевод с одного счета на другой":
+        a = input('С какого счета: ')
+        b = input('На какой счет: ')
+        c = int(input('Сумма перевода: '))
+        money_transfer(a, b, c)
+    elif line == "пополнение счета":
+        a = input('Название счета: ')
+        c = int(input('Сумма пополнения: '))
+        account_replenishment(a, c)
+    elif line == "списание с счета":
+        a = input('Название счета: ')
+        c = int(input('Сумма списания: '))
+        debit_from_account(a, c)
+    elif line == "проверка баланса счета":
+        a = input('Название счета: ')
+        account_balance(a)
+
+    create_bank_account(line)
+    lines.append(line)
+
+print(bank_accounts)
