@@ -55,4 +55,3 @@ while True:
     create_bank_account(line)
     lines.append(line)
 
-print(bank_accounts)
