@@ -22,11 +22,15 @@ def account_replenishment(account, money_amount): # пополнение сче�
     else:
         print('Данного банковского счета не существует, проверьте что вы правильно написали.')
         return
-        
+
 
 def debit_from_account(account, money_amount): # списание с счета
-    bank_accounts[account] -= money_amount
-    return
+    if account in bank_accounts:
+        bank_accounts[account] -= money_amount
+        return
+    else:
+        print('Данного банковского счета не существует, проверьте что вы правильно написали.')
+        return
 
 def account_balance(account): # проверка баланса счета
     print(bank_accounts[account])
