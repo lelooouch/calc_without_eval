@@ -13,11 +13,16 @@ def money_transfer(from_account, to_account, money_amount): # перевод с 
         bank_accounts[to_account] += money_amount
     else:
         print('Данных банковских аккаунтов не существует, проверьте что вы правильно написали.')
-    return
+        return
 
 def account_replenishment(account, money_amount): # пополнение счета
-    bank_accounts[account] += money_amount
-    return
+    if account in bank_accounts:
+        bank_accounts[account] += money_amount
+        return
+    else:
+        print('Данного банковского счета не существует, проверьте что вы правильно написали.')
+        return
+        
 
 def debit_from_account(account, money_amount): # списание с счета
     bank_accounts[account] -= money_amount
