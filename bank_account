@@ -3,13 +3,16 @@ def create_bank_account(name_bank_account): # создание счета
     return
 
 def money_transfer(from_account, to_account, money_amount): # перевод с одного счета на другой
-    if from_account == to_account:
-        return
-    if bank_accounts[from_account] < money_amount:
-        print(f'На банковском счете {from_account} не хватает средств.')
-        return
-    bank_accounts[from_account] -= money_amount
-    bank_accounts[to_account] += money_amount
+    if from_account in bank_accounts and to_account in bank_accounts:
+        if from_account == to_account:
+            return
+        if bank_accounts[from_account] < money_amount:
+            print(f'На банковском счете {from_account} не хватает средств.')
+            return
+        bank_accounts[from_account] -= money_amount
+        bank_accounts[to_account] += money_amount
+    else:
+        print('Данных банковских аккаунтов не существует, проверьте что вы правильно написали.')
     return
 
 def account_replenishment(account, money_amount): # пополнение счета
@@ -55,3 +58,4 @@ while True:
     create_bank_account(line)
     lines.append(line)
 
+print(bank_accounts)
