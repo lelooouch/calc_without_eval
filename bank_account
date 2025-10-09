@@ -42,8 +42,6 @@ def account_balance(account): # проверка баланса счета
         
 
 bank_accounts = {}
-
-lines = []
 print("Выведите операцию, которую хотите осуществить: ")
 while True:
     line = input()
@@ -70,6 +68,6 @@ while True:
         account_balance(a)
 
     create_bank_account(line)
-    lines.append(line)
+
 
 
