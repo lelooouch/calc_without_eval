@@ -33,8 +33,13 @@ def debit_from_account(account, money_amount): # списание с счета
         return
 
 def account_balance(account): # проверка баланса счета
-    print(bank_accounts[account])
-    return
+    if account in bank_accounts:
+        print(bank_accounts[account])
+        return
+    else:
+        print('Данного банковского счета не существует, проверьте что вы правильно написали.')
+        return
+        
 
 bank_accounts = {}
 
