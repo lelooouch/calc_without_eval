@@ -67,7 +67,7 @@ while True:
         a = input('Название счета: ')
         account_balance(a)
 
-    create_bank_account(line)
+
 
 
 
