@@ -8,19 +8,27 @@ def add(name_eat):
         feb = datetime.date(int(x[2]), int(x[1]), int(x[0]))
     else:
         feb = None
-    
+
 
     a = {'amount': name_eat[1], 'expiration_date': feb}
-
-    if name_eat[0] not in gooods:
+    name_eat[0] = name_eat[0].lower()
+    if name_eat[0].lower() not in gooods:
         gooods[name_eat[0]] = []
         gooods[name_eat[0]].append(a)
     else:
         gooods[name_eat[0]].append(a)
     return gooods
 
+'''
 def add_by_note(text):
-    
+    for i in text:
+        if i in gooods
+'''
+
+def find(word):
+    if word.lower in gooods:
+
+
 
 print("Выведите операцию, которую хотите осуществить: ")
 while True:
@@ -31,9 +39,9 @@ while True:
         food = input('Введите название продукта, его вес или кол-во и срок годности через запятую: ').split(', ')
         print(add(food))
     elif line == "add_by_note()":
-
-
-
+        text = input('Введите описание продукта: ').split(' ')
+    elif line == "find()":
+        text = input('Введите описание продукта: ').split(' ')
 
 
 
