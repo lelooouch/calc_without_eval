@@ -5,7 +5,10 @@ gooods = {}
 def add(name_eat):
     if len(name_eat) == 3:
         x = name_eat[2].split('.')
-    feb = datetime.date(int(x[2]), int(x[1]), int(x[0]))
+        feb = datetime.date(int(x[2]), int(x[1]), int(x[0]))
+    else:
+        feb = None
+    
 
     a = {'amount': name_eat[1], 'expiration_date': feb}
 
@@ -14,8 +17,10 @@ def add(name_eat):
         gooods[name_eat[0]].append(a)
     else:
         gooods[name_eat[0]].append(a)
-
     return gooods
+
+def add_by_note(text):
+    
 
 print("Выведите операцию, которую хотите осуществить: ")
 while True:
@@ -25,6 +30,11 @@ while True:
     elif line == "add()":
         food = input('Введите название продукта, его вес или кол-во и срок годности через запятую: ').split(', ')
         print(add(food))
+    elif line == "add_by_note()":
+
+
+
+
 
 
 
