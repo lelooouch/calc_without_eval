@@ -1,1 +1,30 @@
+import datetime
+
+gooods = {}
+
+def add(name_eat):
+    if len(name_eat) == 3:
+        x = name_eat[2].split('.')
+    feb = datetime.date(int(x[2]), int(x[1]), int(x[0]))
+
+    a = {'amount': name_eat[1], 'expiration_date': feb}
+
+    if name_eat[0] not in gooods:
+        gooods[name_eat[0]] = []
+        gooods[name_eat[0]].append(a)
+    else:
+        gooods[name_eat[0]].append(a)
+
+    return gooods
+
+print("Выведите операцию, которую хотите осуществить: ")
+while True:
+    line = input()
+    if line == "":
+        break
+    elif line == "add()":
+        food = input('Введите название продукта, его вес или кол-во и срок годности через запятую: ').split(', ')
+        print(add(food))
+
+
 
