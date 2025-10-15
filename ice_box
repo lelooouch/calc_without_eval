@@ -20,11 +20,6 @@ def add(name_eat):
     return gooods
 
 
-def add_by_note(text):
-    for i in text:
-        if i in gooods
-
-
 def find(word):
     if word.lower in gooods:
 
