@@ -19,11 +19,11 @@ def add(name_eat):
         gooods[name_eat[0]].append(a)
     return gooods
 
-
+'''
 def find(word):
     if word.lower in gooods:
 
-
+'''
 
 print("Выведите операцию, которую хотите осуществить: ")
 while True:
