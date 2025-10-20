@@ -1,1 +1,33 @@
+class Person:
+    def __init__(self, name  = str, hp = int, attack = int):
+        self.name = name
+        self.hp = hp
+        self.attack = attack
+
+
+class Knight(Person):
+    def __init__(self, type, name, hp = int, object = None, attack = int):
+        super().__init__(name, hp, attack)
+        self.type = type
+        self.object = object
+
+    def bag(self):
+        if self.object == 'hill':
+            self.hp += 100
+            self.object = None
+        elif self.object == 'damage':
+            self.attack += 100
+            self.object = None
+
+class Dragon(Person):
+    def __init__(self, level, name, hp = int, attack = int):
+        super().__init__(name, hp, attack)
+        self.type = type
+        self.object = object
+
+
+
+
+
+
 
