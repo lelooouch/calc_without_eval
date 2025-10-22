@@ -24,6 +24,9 @@ class Person:
             print(f'{self.name} совершает обычную атаку.')
             other.hp -= self.attack
         print(f'У {other.name} осталось {other.hp}хп!')
+        if other.hp <= 0:
+            print(f'{other.hp} - Проиграл! Победа достается {self.name}!!!')
+            return
 
     def info(self):
         return f'-----------\nИмя персонажа: {self.name}\nУрон: {self.attack}\nХп: {self.hp}\n-----------'
@@ -70,14 +73,17 @@ class randomAttack(Person):
             print(f'У {self.name} осталось {self.hp} здоровья.')
     '''
 
+# начало игры
+# создание персонажа
+name_first = input('Напишите имя вашего героя: ')
+hp = int(input('Какое количество хп у него будет (советуем выбирать оптимальное число от 500 до 2000): '))
+attack = int(input('Какое количество урона ваш персонаж будет наносить (советуем выбирать оптимальное число от 50 до 150): '))
+knight = Person(name_first, hp, attack)
+print('Ваш персонаж создан!')
+print(knight.info())
 
-
-
-
-
-
-
-
-
-
-
+# создание дракона
+dragon = Person('Dragon', 1000, 100)
+print(dragon.info())
+knight.attack_other(dragon)
+print(dragon.info())
