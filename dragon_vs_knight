@@ -1,19 +1,38 @@
 import random
-from random import *
+
+
 
 class Person:
 
-    def __init__(self, name = str, hp = int, attack = int):
+    def __init__(self, name=str, hp=int, attack=int):
         self.name = name
         self.hp = hp
         self.attack = attack
 
+    def attack_other(self, other):
+
+        print(f'Ход {self.name}, бросаем кости...')
+        a = [random.randint(1, 6), random.randint(1, 6)]
+        print(f'Выпало: {a[0]} и {a[1]}, в сумме: {sum(a)}')
+        print(f'{other.name}, бросает кости...')
+        b = [random.randint(1, 6), random.randint(1, 6)]
+        print(f'Выпало: {b[0]} и {b[1]}, в сумме: {sum(b)}')
+        if sum(a) > sum(b):
+            print(f'{self.name} совершает усиленную атаку!')
+            other.hp -= self.attack + (sum(a) - sum(b)) * 10
+        else:
+            print(f'{self.name} совершает обычную атаку.')
+            other.hp -= self.attack
+        print(f'У {other.name} осталось {other.hp}хп!')
+
+    def info(self):
+        return f'-----------\nИмя персонажа: {self.name}\nУрон: {self.attack}\nХп: {self.hp}\n-----------'
+
 
 class Knight(Person):
 
-    def __init__(self, type, name, hp = float, object = None, attack = float):
+    def __init__(self, name, hp=float, attack=float):
         super().__init__(name, hp, attack)
-        self.type = type
         self.object = object
 
     def bag(self):
@@ -25,34 +44,23 @@ class Knight(Person):
             self.object = None
 
 
+
 class Dragon(Person):
 
-    def __init__(self, level = int, name = str, hp = float, attack = float):
+    def __init__(self, level=int, name=str, hp=float, attack=float):
         super().__init__(name, hp, attack)
         self.level = level
 
 
 class randomAttack(Person):
 
-    def __init__(self, name_attack, name_get_damage, name = str, hp = float, attack = float):
+    def __init__(self, name_attack, name_get_damage, name=str, hp=float, attack=float):
         super().__init__(name, hp, attack)
         self.name_attack = name_attack
         self.name_get_damage = name_get_damage
 
-    def attack(self):
-        print(f'Ход {self.name_attack}, бросаем кости...')
-        a = [random.randint(1, 6), random.randint(1, 6)]
-        print(f'Выпало: {a[0]} и {a[1]}, в сумме: {sum(a)}')
-        print(f'{self.name_get_damage}, бросает кости...')
-        b = [random.randint(1, 6), random.randint(1, 6)]
-        print(f'Выпало: {b[0]} и {b[1]}, в сумме: {sum(b)}')
-        if sum(a) > sum(b):
-            print(f'{self.name_attack} совершает усиленную атаку!')
-            self.damage = self.attack + (sum(a) - sum(b))*0.5
-        else:
-            print(f'{self.name_attack} совершает обычную атаку.')
-            self.damage = self.attack
-     
+
+
     '''             
     def get_damage(self, other):
         self.hp -= other.damage
@@ -60,9 +68,17 @@ class randomAttack(Person):
             return f'{self.name} проиграл!'
         else:
             print(f'У {self.name} осталось {self.hp} здоровья.')
-    '''  
-    
-tom = Person('Tom', 1000, 100)
+    '''
+
+
+knight = Person('Tom', 1000, 100)
+print(knight.info())
+dragon = Person('Dragon', 1000, 100)
+print(dragon.info())
+knight.attack_other(dragon)
+print(dragon.info())
+
+
 
 
 
