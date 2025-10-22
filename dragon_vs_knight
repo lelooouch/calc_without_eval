@@ -47,7 +47,6 @@ class Knight(Person):
             self.object = None
 
 
-
 class Dragon(Person):
 
     def __init__(self, level=int, name=str, hp=float, attack=float):
