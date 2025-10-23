@@ -58,65 +58,113 @@ class Knight(Person):
             self.attack += 100
             self.object = None
 
-    def open_chest(self, mastery = random.choice(['Ученик', 'Адепт', 'Эксперт', 'Мастер'])):
+    def open_chest(self, mastery = None):
         chest = ['hill', 'damage', 'angry_chest']
-        object_chest = random.choice(chest)
-        print(f'\nУровень сложности замка - {mastery}.')
+        object_chest = random.choice(mastery)
         if object_chest != 'angry_chest':
-            if mastery == 'Ученик':
-                money = random.randint(10, 30)
-                random_number = random.randint(1, 4)
-                print('\nДля открытия сундука надо отгадать загаданное число в диапозоне от 1 до 4!')
-                print('У вас есть 3 попытки.')
-                for i in range(3):
-                    num = int(input('Введите загаданное число: '))
-                    if num == random_number:
-                        self.balance += money
-                        print(f'\nСундук открыт! Вы нашли {money} монет!')
-                        print(f'Ваш баланс - {self.balance}')
-                        
+            flag = self.mastery_for_chest(mastery)
 
-            elif mastery == 'Адепт':
-                money = random.randint(40, 60)
-            elif mastery == 'Эксперт':
-                money = random.randint(70, 90)
-            elif mastery == 'Мастер':
-                money = random.randint(100, 120)
+            if object_chest == 'hill' and flag:
+                print('\nПоздравляю вы получили зелье здоровья!')
+                print(f'У вас осталось {self.hp}хп.')
+                print('Можете использовать его сейчас или положить в инвентарь.')
+                print('(Помните, что больше хп, чем в начале игры, вы получить не можете)')
+                print('Что вы сделаете?')
+                print('1. Использовать сейчас')
+                print('2. Положить в инвентарь')
 
+                d1 = int(input('Напишите число: '))
+                if d1 == 1:
+                    self.hp += 100
+                elif d1 == 2:
+                    self.bag.append('hill')
 
-        if object_chest == 'hill':
-            print('\nПоздравляю вы получили зелье здоровья!')
-            print(f'У вас осталось {self.hp}хп.')
-            print('Можете использовать его сейчас или положить в инвентарь.')
-            print('(Помните, что больше хп, чем в начале игры, вы получить не можете)')
-            print('Что вы сделаете?')
-            print('1. Использовать сейчас')
-            print('2. Положить в инвентарь')
+            elif object_chest == 'damage' and flag:
+                print('\nПоздравляю вы получили зелье силы!')
+                print(f'Сейчас сила атаки {self.attack}')
+                print('Можете использовать его сейчас или положить в инвентарь.')
+                print('(Помните, что сила атаки возрастает на одну битву)')
+                print('Что вы сделаете?')
+                print('1. Использовать сейчас')
+                print('2. Положить в инвентарь')
 
-            d1 = int(input('Напишите число: '))
-            if d1 == 1:
-                self.hp += 100
-            elif d1 == 2:
-                self.bag.append('hill')
-
-        elif object_chest == 'damage':
-            print('\nПоздравляю вы получили зелье силы!')
-            print(f'Сейчас сила атаки {self.attack}')
-            print('Можете использовать его сейчас или положить в инвентарь.')
-            print('(Помните, что сила атаки возрастает на одну битву)')
-            print('Что вы сделаете?')
-            print('1. Использовать сейчас')
-            print('2. Положить в инвентарь')
-
-            d1 = int(input('Напишите число: '))
-            if d1 == 1:
-                self.attack += 50
-            elif d1 == 2:
-                self.bag.append('damage')
+                d1 = int(input('Напишите число: '))
+                if d1 == 1:
+                    self.attack += 50
+                elif d1 == 2:
+                    self.bag.append('damage')
 
         else:
             print('\nСундук оказался ловушкой! Защищайтесь!')
             super().attack_other(AngryChest('Сундук', 200, 30))
+
+    def mastery_for_chest(self, mastery = random.choice(['Ученик', 'Адепт', 'Эксперт', 'Мастер'])):
+        print(f'\nУровень сложности замка - {mastery}.')
+        if mastery == 'Ученик':
+            money = random.randint(10, 30)
+            random_number = random.randint(1, 4)
+            print('\nДля открытия сундука надо отгадать загаданное число в диапозоне от 1 до 4!')
+            print('У вас есть 3 попытки.')
+            for i in range(3):
+                num = int(input('Введите загаданное число: '))
+                if num == random_number:
+                    self.balance += money
+                    print(f'\nСундук открыт! Вы нашли {money} монет!')
+                    print(f'Ваш баланс - {self.balance}')
+                    return True
+                elif i == 2:
+                    print('\nУвы! Все отмычки сломались.')
+                    return False
+
+        elif mastery == 'Адепт':
+            money = random.randint(40, 60)
+            random_number = random.randint(1, 6)
+            print('\nДля открытия сундука надо отгадать загаданное число в диапозоне от 1 до 6!')
+            print('У вас есть 3 попытки.')
+            for i in range(3):
+                num = int(input('Введите загаданное число: '))
+                if num == random_number:
+                    self.balance += money
+                    print(f'\nСундук открыт! Вы нашли {money} монет!')
+                    print(f'Ваш баланс - {self.balance}')
+                    return True
+                elif i == 2:
+                    print('\nУвы! Все отмычки сломались.')
+                    return False
+
+        elif mastery == 'Эксперт':
+            money = random.randint(70, 90)
+            money = random.randint(40, 60)
+            random_number = random.randint(1, 8)
+            print('\nДля открытия сундука надо отгадать загаданное число в диапозоне от 1 до 8!')
+            print('У вас есть 3 попытки.')
+            for i in range(3):
+                num = int(input('Введите загаданное число: '))
+                if num == random_number:
+                    self.balance += money
+                    print(f'\nСундук открыт! Вы нашли {money} монет!')
+                    print(f'Ваш баланс - {self.balance}')
+                    return True
+                elif i == 2:
+                    print('\nУвы! Все отмычки сломались.')
+                    return False
+
+        elif mastery == 'Мастер':
+            money = random.randint(100, 120)
+            money = random.randint(40, 60)
+            random_number = random.randint(1, 10)
+            print('\nДля открытия сундука надо отгадать загаданное число в диапозоне от 1 до 10!')
+            print('У вас есть 3 попытки.')
+            for i in range(3):
+                num = int(input('Введите загаданное число: '))
+                if num == random_number:
+                    self.balance += money
+                    print(f'\nСундук открыт! Вы нашли {money} монет!')
+                    print(f'Ваш баланс - {self.balance}')
+                    return True
+                elif i == 2:
+                    print('\nУвы! Все отмычки сломались.')
+                    return False
 
 
 class Dragon(Person):
