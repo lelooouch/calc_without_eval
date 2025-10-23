@@ -1,6 +1,6 @@
 import random
 import sys
-
+import time
 
 class Person:
 
@@ -11,10 +11,12 @@ class Person:
 
     def attack_other(self, other):
         while other.hp > 0 and self.hp > 0:
-            print(f'\nХод {self.name}, бросаем кости...')
+            print(f'\nХод {self.name}, бросаем кости...🎲')
+            time.sleep(1)
             a = [random.randint(1, 6), random.randint(1, 6)]
             print(f'Выпало: {a[0]} и {a[1]}, в сумме: {sum(a)}')
-            print(f'{other.name}, бросает кости...')
+            print(f'{other.name}, бросает кости...🎲')
+            time.sleep(1)
             b = [random.randint(1, 6), random.randint(1, 6)]
             print(f'Выпало: {b[0]} и {b[1]}, в сумме: {sum(b)}')
 
@@ -101,7 +103,7 @@ class Dragon(Person):
 
     def attack_dragon(self, other):
 
-        print(f'Ход {other.name}, бросаем кости...')
+        print(f'Ход {other.name}, бросаем кости...🎲')
         a = [random.randint(1, 6), random.randint(1, 6)]
         print(f'Выпало: {a[0]} и {a[1]}, в сумме: {sum(a)}')
         print(f'Дракон, взмахивает крыльями...')
