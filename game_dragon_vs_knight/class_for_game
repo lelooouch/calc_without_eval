@@ -48,6 +48,7 @@ class Knight(Person):
     def __init__(self, name, hp=float, attack=float):
         super().__init__(name, hp, attack)
         self.bag = []
+        self.balance = 0
 
     def inventory(self):
         if self.object == 'hill':
@@ -57,9 +58,32 @@ class Knight(Person):
             self.attack += 100
             self.object = None
 
-    def open_chest(self):
+    def open_chest(self, mastery = random.choice(['Ученик', 'Адепт', 'Эксперт', 'Мастер'])):
         chest = ['hill', 'damage', 'angry_chest']
         object_chest = random.choice(chest)
+        print(f'\nУровень сложности замка - {mastery}.')
+        if object_chest != 'angry_chest':
+            if mastery == 'Ученик':
+                money = random.randint(10, 30)
+                random_number = random.randint(1, 4)
+                print('\nДля открытия сундука надо отгадать загаданное число в диапозоне от 1 до 4!')
+                print('У вас есть 3 попытки.')
+                for i in range(3):
+                    num = int(input('Введите загаданное число: '))
+                    if num == random_number:
+                        self.balance += money
+                        print(f'\nСундук открыт! Вы нашли {money} монет!')
+                        print(f'Ваш баланс - {self.balance}')
+                        
+
+            elif mastery == 'Адепт':
+                money = random.randint(40, 60)
+            elif mastery == 'Эксперт':
+                money = random.randint(70, 90)
+            elif mastery == 'Мастер':
+                money = random.randint(100, 120)
+
+
         if object_chest == 'hill':
             print('\nПоздравляю вы получили зелье здоровья!')
             print(f'У вас осталось {self.hp}хп.')
