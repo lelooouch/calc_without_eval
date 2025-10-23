@@ -36,7 +36,7 @@ class Knight(Person):
 
     def __init__(self, name, hp=float, attack=float):
         super().__init__(name, hp, attack)
-        self.object = object
+        self.bag = []
 
     def bag(self):
         if self.object == 'hill':
@@ -46,7 +46,24 @@ class Knight(Person):
             self.attack += 100
             self.object = None
 
+    def open_chest(self):
+        chest = ['hill', 'damage', 'angry_chest']
+        object_chest = random.choice(chest)
+        if object_chest == 'hill':
+            print('\nПоздравляю вы получили зелье здоровья!')
+            print(f'У вас осталось {self.hp}хп.')
+            print('Можете использовать его сейчас или положить в инвентарь.')
+            print('Что вы сделаете?')
+            print('1. Использовать сейчас')
+            print('2. Положить в инвентарь')
 
+            d1 = int(input('Напишите число: '))
+            if d1 == 1:
+                self.hp += 100
+            elif d1 == 2:
+                self.bag.append('hill')
+            
+            
 class Dragon(Person):
 
     def __init__(self, level=int, name=str, hp=float, attack=float):
@@ -163,6 +180,7 @@ print('2. Оставить его — это может быть ловушка'
 d1 = int(input('Напишите число: '))
 while d1 not in [1, 2, 3]:
     d1 = int(input('Выберите число от 1 до 3: '))
+
 
 
 
