@@ -10,24 +10,32 @@ class Person:
         self.attack = attack
 
     def attack_other(self, other):
+        while other.hp > 0 and self.hp > 0:
+            print(f'\nХод {self.name}, бросаем кости...')
+            a = [random.randint(1, 6), random.randint(1, 6)]
+            print(f'Выпало: {a[0]} и {a[1]}, в сумме: {sum(a)}')
+            print(f'{other.name}, бросает кости...')
+            b = [random.randint(1, 6), random.randint(1, 6)]
+            print(f'Выпало: {b[0]} и {b[1]}, в сумме: {sum(b)}')
 
-        print(f'Ход {self.name}, бросаем кости...')
-        a = [random.randint(1, 6), random.randint(1, 6)]
-        print(f'Выпало: {a[0]} и {a[1]}, в сумме: {sum(a)}')
-        print(f'{other.name}, бросает кости...')
-        b = [random.randint(1, 6), random.randint(1, 6)]
-        print(f'Выпало: {b[0]} и {b[1]}, в сумме: {sum(b)}')
-        if sum(a) > sum(b):
-            print(f'{self.name} совершает усиленную атаку!')
-            other.hp -= self.attack + (sum(a) - sum(b)) * 10
-        else:
-            print(f'{self.name} совершает обычную атаку.')
-            other.hp -= self.attack
-        if other.hp <= 0:
-            print(f'{other.hp} - Проиграл! Победа достается {self.name}!!!')
-            return
-        else:
-            print(f'У {other.name} осталось {other.hp}хп!')
+            if sum(a) > sum(b):
+                print(f'{self.name} совершает усиленную атаку!')
+                other.hp -= self.attack + (sum(a) - sum(b)) * 10
+            else:
+                print(f'{self.name} совершает обычную атаку.')
+                other.hp -= self.attack
+
+            if other.hp <= 0:
+                print(f'\n{other.name} - Проиграл! Победа достается {self.name}!!!')
+                return
+            else:
+                print(f'\nУ {other.name} осталось {other.hp}хп!')
+                print('Битва продолжается!')
+                print(f'{other.name} дает отпор! Защищайся!')
+                self.hp -= other.attack
+                print(f'У {self.name} осталось {self.hp}хп!')
+
+
 
     def info(self):
         return f'-----------\nИмя персонажа: {self.name}\nУрон: {self.attack}\nХп: {self.hp}\n-----------\n'
@@ -81,7 +89,7 @@ class Knight(Person):
 
         else:
             print('\nСундук оказался ловушкой! Защищайтесь!')
-            super().attack_other(AngryChest('Сундук', 100, 30))
+            super().attack_other(AngryChest('Сундук', 200, 30))
 
 
 class Dragon(Person):
