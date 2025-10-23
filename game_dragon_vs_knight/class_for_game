@@ -1,1 +1,109 @@
+import random
+import sys
 
+
+class Person:
+
+    def __init__(self, name=str, hp=int, attack=int):
+        self.name = name
+        self.hp = hp
+        self.attack = attack
+
+    def attack_other(self, other):
+
+        print(f'Ход {self.name}, бросаем кости...')
+        a = [random.randint(1, 6), random.randint(1, 6)]
+        print(f'Выпало: {a[0]} и {a[1]}, в сумме: {sum(a)}')
+        print(f'{other.name}, бросает кости...')
+        b = [random.randint(1, 6), random.randint(1, 6)]
+        print(f'Выпало: {b[0]} и {b[1]}, в сумме: {sum(b)}')
+        if sum(a) > sum(b):
+            print(f'{self.name} совершает усиленную атаку!')
+            other.hp -= self.attack + (sum(a) - sum(b)) * 10
+        else:
+            print(f'{self.name} совершает обычную атаку.')
+            other.hp -= self.attack
+        if other.hp <= 0:
+            print(f'{other.hp} - Проиграл! Победа достается {self.name}!!!')
+            return
+        else:
+            print(f'У {other.name} осталось {other.hp}хп!')
+
+    def info(self):
+        return f'-----------\nИмя персонажа: {self.name}\nУрон: {self.attack}\nХп: {self.hp}\n-----------\n'
+
+
+class Knight(Person):
+
+    def __init__(self, name, hp=float, attack=float):
+        super().__init__(name, hp, attack)
+        self.bag = []
+
+    def inventory(self):
+        if self.object == 'hill':
+            self.hp += 100
+            self.object = None
+        elif self.object == 'damage':
+            self.attack += 100
+            self.object = None
+
+    def open_chest(self):
+        chest = ['hill', 'damage', 'angry_chest']
+        object_chest = random.choice(chest)
+        if object_chest == 'hill':
+            print('\nПоздравляю вы получили зелье здоровья!')
+            print(f'У вас осталось {self.hp}хп.')
+            print('Можете использовать его сейчас или положить в инвентарь.')
+            print('Что вы сделаете?')
+            print('1. Использовать сейчас')
+            print('2. Положить в инвентарь')
+
+            d1 = int(input('Напишите число: '))
+            if d1 == 1:
+                self.hp += 100
+            elif d1 == 2:
+                self.bag.append('hill')
+
+        elif object_chest == 'damage':
+            print('\nПоздравляю вы получили зелье силы!')
+            print(f'Сейчас сила атаки {self.attack}')
+            print('Можете использовать его сейчас или положить в инвентарь.')
+            print('(Помните, что сила атаки возрастает на одну битву)')
+            print('Что вы сделаете?')
+            print('1. Использовать сейчас')
+            print('2. Положить в инвентарь')
+
+            d1 = int(input('Напишите число: '))
+            if d1 == 1:
+                self.attack += 50
+            elif d1 == 2:
+                self.bag.append('damage')
+
+        else:
+            print('\nСундук оказался ловушкой! Защищайтесь!')
+            super().attack_other(AngryChest('Сундук', 100, 30))
+
+
+class Dragon(Person):
+
+    def __init__(self, level=int, name=str, hp=float, attack=float):
+        super().__init__(name, hp, attack)
+        self.level = level
+
+    def attack_dragon(self, other):
+
+        print(f'Ход {other.name}, бросаем кости...')
+        a = [random.randint(1, 6), random.randint(1, 6)]
+        print(f'Выпало: {a[0]} и {a[1]}, в сумме: {sum(a)}')
+        print(f'Дракон, взмахивает крыльями...')
+        b = [random.randint(100, 1000), random.randint(100, 1000)]
+        print(f'Выпало: {b[0]} и {b[1]}, в сумме: {sum(b)}')
+        if sum(a) < sum(b):
+            print(f'Дракон совершает атаку!')
+            other.hp -= self.attack + (sum(b) - sum(a)) * 10
+        print()
+
+
+class AngryChest(Person):
+    def __init__(self, name, hp=float, attack=float):
+        super().__init__(name, hp, attack)
