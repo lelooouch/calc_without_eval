@@ -54,15 +54,34 @@ class Knight(Person):
         self.bag = []
         self.balance = 0
 
-    def inventory(self, object_inventory):
-        if object_inventory == 'зелье здоровья':
-            self.hp += 100
-            print(f'Ваше хп - {self.hp}')
-            self.bag.remove(object_inventory)
-        elif object_inventory == 'зелье силы':
-            self.attack += 50
-            print(f'Ваша атака - {self.attack}')
-            self.bag.remove(object_inventory)
+    def inventory(self):
+        if len(self.bag) > 0:
+            print('\nВ вашем инвентаре есть предметы! Хотите использовать их перед битвой?')
+            print('\nЧто вы решаете?')
+            print('1. Заглянуть в инвентарь')
+            print('2. Не заглядывать в инвентарь')
+            b1 = int(input('Напишите число: '))
+            if b1 == 1:
+                print(f'Вам доступно:\n{self.bag}')
+                print('Выберите номер предмета в инвентаре, чтобы использовать его.')
+                flag = True
+                while flag:
+                    ob = int(input('Напишите номер: '))
+                    if len(self.bag) < ob:
+                        print('Такого предмета нет в инвентаре!')
+                    else:
+                        object_inventory = self.bag[ob - 1]
+                        flag = False
+
+                        if object_inventory == 'зелье здоровья':
+                            self.hp += 100
+                            print(f'Ваше хп - {self.hp}')
+                            self.bag.remove(object_inventory)
+                        elif object_inventory == 'зелье силы':
+                            self.attack += 50
+                            print(f'Ваша атака - {self.attack}')
+                            self.bag.remove(object_inventory)
+
 
     # функция открытия сундука
     def open_chest(self, mastery = None):
@@ -201,3 +220,4 @@ class OtherEnemeis(Person):
 
     def __init__(self, name, hp=float, attack=float):
         super().__init__(name, hp, attack)
+
