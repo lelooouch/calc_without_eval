@@ -16,8 +16,8 @@ print(knight.info())
 # создание других мобов
 
 dragon = Dragon(1,'Дракон', 1000, 100)
-chest = AngryChest('Сундук', 200, 30)
-bandit = Bandits('Бандит', 250, 40)
+# chest = OtherEnemeis('Сундук', 200, 30)
+bandit = OtherEnemeis('Бандит', 250, 40)
 
 # начало сюжета
 
@@ -230,6 +230,8 @@ elif d1 == 3:
     time.sleep(1)
     print('\nБандит вызывает вас на битву...')
     time.sleep(1)
+    
+    # возможно перепишу в класс
     if len(knight.bag) > 0:
         print('\nВ вашем инвентаре есть предметы! Хотите использовать их перед битвой?')
         print('\nЧто вы решаете?')
