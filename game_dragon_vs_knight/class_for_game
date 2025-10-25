@@ -35,7 +35,11 @@ class Person:
                 print('Битва продолжается!')
                 print(f'{other.name} дает отпор! Защищайся!')
                 self.hp -= other.attack
-                print(f'У {self.name} осталось {self.hp}хп!')
+                if self.hp <= 0:
+                    print(f'Увы! Вы проиграли💀')
+                    sys.exit()
+                else:
+                    print(f'У {self.name} осталось {self.hp}хп!')
 
 
 
