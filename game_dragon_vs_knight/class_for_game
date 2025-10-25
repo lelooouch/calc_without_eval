@@ -201,4 +201,3 @@ class OtherEnemeis(Person):
 
     def __init__(self, name, hp=float, attack=float):
         super().__init__(name, hp, attack)
-
