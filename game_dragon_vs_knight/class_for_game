@@ -81,6 +81,14 @@ class Knight(Person):
                             self.attack += 50
                             print(f'Ваша атака - {self.attack}')
                             self.bag.remove(object_inventory)
+                        elif object_inventory == 'булка хлеба':
+                            self.hp += 30
+                            print(f'Ваше хп - {self.hp}')
+                            self.bag.remove(object_inventory)
+                        elif object_inventory == 'окорочек':
+                            self.hp += 40
+                            print(f'Ваше хп - {self.hp}')
+                            self.bag.remove(object_inventory)
 
 
     # функция открытия сундука
