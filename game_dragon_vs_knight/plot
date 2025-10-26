@@ -288,5 +288,36 @@ print('2. Продолжить свое путешествие.')
 print(f'(Ваш баланс - {knight.balance})')
 d1 = int(input('Напишите число: '))
 
-
-
+if d1 == 1:
+    print('\nТорговец показывает свои товары.')
+    print('1. Зелье здоровья - 90 монет\n2. Зелье силы - 100 монет\n3. Булка хлеба - 20 монет\n4.Окорочек - 30 монет\n')
+    d2 = int(input('Выберите товар или нажмите любую другую кнопку, чтобы ничего не брать: '))
+    if d2 == 1:
+        if knight.balance >= 90:
+            knight.bag.append('зелье здоровья')
+            knight.balance -= 90
+        else:
+            print('У вас недостаточно денег.')
+    
+    elif d2 == 2:
+        if knight.balance >= 100:
+            knight.bag.append('зелье силы')
+            knight.balance -= 100
+        else:
+            print('У вас недостаточно денег.')
+    
+    elif d2 == 3:
+        if knight.balance >= 20:
+            knight.bag.append('булка хлеба')
+            knight.balance -= 20
+        else:
+            print('У вас недостаточно денег.')
+    
+    elif d2 == 4:
+        if knight.balance >= 30:
+            knight.bag.append('окорочек')
+            knight.balance -= 30
+        else:
+            print('У вас недостаточно денег.')
+    
+    
