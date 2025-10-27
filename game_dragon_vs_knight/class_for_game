@@ -85,7 +85,7 @@ class Knight(Person):
                             self.hp += 30
                             print(f'Ваше хп - {self.hp}')
                             self.bag.remove(object_inventory)
-                        elif object_inventory == 'окорочек':
+                        elif object_inventory == 'окорочок':
                             self.hp += 40
                             print(f'Ваше хп - {self.hp}')
                             self.bag.remove(object_inventory)
