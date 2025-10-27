@@ -298,26 +298,25 @@ if d1 == 1:
             knight.balance -= 90
         else:
             print('У вас недостаточно денег.')
-    
+
     elif d2 == 2:
         if knight.balance >= 100:
             knight.bag.append('зелье силы')
             knight.balance -= 100
         else:
             print('У вас недостаточно денег.')
-    
+
     elif d2 == 3:
         if knight.balance >= 20:
             knight.bag.append('булка хлеба')
             knight.balance -= 20
         else:
             print('У вас недостаточно денег.')
-    
+
     elif d2 == 4:
         if knight.balance >= 30:
-            knight.bag.append('окорочек')
+            knight.bag.append('окорочок')
             knight.balance -= 30
         else:
             print('У вас недостаточно денег.')
-    
-    
+
