@@ -319,4 +319,3 @@ if d1 == 1:
             knight.balance -= 30
         else:
             print('У вас недостаточно денег.')
-
