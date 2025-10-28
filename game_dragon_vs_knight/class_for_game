@@ -109,6 +109,7 @@ class Knight(Person):
                 d1 = int(input('Напишите число: '))
                 if d1 == 1:
                     self.hp += 100
+                    print(f'Ваше здоровье - {self.hp}')
                 elif d1 == 2:
                     self.bag.append('зелье здоровья')
 
