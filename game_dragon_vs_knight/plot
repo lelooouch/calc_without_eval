@@ -15,7 +15,7 @@ print(knight.info())
 
 # создание других мобов
 
-dragon = Dragon(1,'Одинадцатый', 900, 100)
+dragon_1 = Dragon(1,'Одинадцатый', 900, 100)
 dragon_2 = Dragon(1,'Альдуин', 700, 100)
 # chest = OtherEnemeis('Сундук', 200, 30)
 bandit = OtherEnemeis('Бандит', 250, 40)
