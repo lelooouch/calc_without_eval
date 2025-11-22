@@ -67,4 +67,3 @@ while True:
         a = input('Название счета: ')
         account_balance(a)
 
-
