@@ -42,6 +42,7 @@ def account_balance(account): # проверка баланса счета
 
 bank_accounts = {}
 print("Выведите операцию, которую хотите осуществить: ")
+
 while True:
     line = input()
     if line == "":
