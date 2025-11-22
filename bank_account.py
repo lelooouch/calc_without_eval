@@ -23,7 +23,6 @@ def account_replenishment(account, money_amount): # пополнение сче�
         print('Данного банковского счета не существует, проверьте что вы правильно написали.')
         return
 
-
 def debit_from_account(account, money_amount): # списание с счета
     if account in bank_accounts:
         bank_accounts[account] -= money_amount
