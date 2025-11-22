@@ -66,4 +66,3 @@ while True:
     elif line == "проверка баланса счета":
         a = input('Название счета: ')
         account_balance(a)
-
