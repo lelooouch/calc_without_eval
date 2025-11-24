@@ -59,9 +59,6 @@ ALTER TABLE video_products2
 RENAME TO video_products;
 ''')
 
-con.commit()
-con.close()
-
 # cur.executemany('INSERT INTO directors VALUES(?, ?, ?);', directors)
 # cur.executemany('INSERT INTO video_products VALUES(?, ?, ?, ?);', video_products)
 
